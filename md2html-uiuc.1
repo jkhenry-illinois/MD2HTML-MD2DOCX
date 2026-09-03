@@ -1,0 +1,88 @@
+.TH MD2HTML-UC 1 "August 6, 2026" "User Commands"
+.SH NAME
+md2html-uiuc \- Convert Markdown to HTML with University of Illinois Urbana-Champaign theme
+.SH SYNOPSIS
+md2html-uiuc INPUT_FILE
+.SH DESCRIPTION
+md2html-uiuc is an easy-to-use wrapper script that converts a Markdown file to HTML using the UIUC-themed converter. It applies the University of Illinois Urbana-Champaign branding (navy #13294B, orange #E84A27), enables wiki-link resolution from your wiki directory, and generates a hamburger navigation menu built from your wiki index.md.
+
+This is a simplified interface to the underlying md2html.py script with commonly used options pre-configured for UIUC documentation workflows.
+.SH ARGUMENTS
+.TP
+\fBINPUT_FILE\fP
+Path to the Markdown file to convert. Must have .md extension.
+.SH BEHAVIOR
+The script converts INPUT_FILE to an HTML file with the same basename in the same directory (e.g., notes.md → notes.html). It uses the following md2html.py options:
+.RS
+.IP \(bu 2
+\fB--standalone\fP: Generate a full HTML document with header
+.IP \(bu 2
+\fB-s\fP: Enable wiki-link resolution
+.IP \(bu 2
+\fB-d ~/wiki\fP: Specify wiki directory for link resolution
+.IP \(bu 2
+\fB-n\fP: Generate navigation bar from wiki index.md
+.RE
+If an output file already exists, it will be overwritten without warning.
+.SH EXAMPLES
+.PP
+Convert a single Markdown file:
+    md2html-uiuc meeting_notes.md
+    # Creates meeting_notes.html in the same directory
+.PP
+Convert a file in a subdirectory:
+    md2html-uiuc docs/project_overview.md
+    # Creates docs/project_overview.html
+.SH ENVIRONMENT
+No specific environment variables are required. The script assumes:
+.RS
+.IP \(bu 2
+Python 3 is available in PATH
+.IP \(bu 2
+Your wiki is located at ~/wiki (for wiki-link resolution and nav bar)
+.RE
+.SH FILES
+.TP
+\fI~/md2html.py\fP
+The underlying Markdown to HTML converter (pure Python, stdlib only).
+.TP
+\fI~/md2html-uiuc\fP
+This wrapper script.
+.TP
+\fI~/wiki/\fP
+Your wiki directory (used for wiki-link resolution and navigation bar).
+.TP
+\fIINPUT_FILE.html\fP
+The generated HTML output file (same directory as input).
+.SH EXIT STATUS
+0   Success.
+1   Error (e.g., missing input file, missing md2html.py, or conversion failure).
+.SH SEE ALSO
+md2html(1), convert-md.sh(1), md2docx-uiuc(1)
+.SH AUTHOR
+Created by JK Henry for personal workflow automation.
+.SH BUGS
+Report issues at <https://github.com/anomalyco/opencode/issues>.
+.SH COPYRIGHT
+Copyright © 2026 JK Henry
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+.SH VERSION
+This man page documents md2html-uiuc version 1.0.0 (based on stable md2html.py).
+Last reviewed: 2026-08-06

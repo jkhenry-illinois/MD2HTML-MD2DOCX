@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# md2html-uiuc - Easy-to-use wrapper for UIUC-themed Markdown to HTML conversion
+# Converts a Markdown file to HTML with UIUC theme, wiki-link resolution, and nav bar
+
+set -euo pipefail
+
+PYTHON_SCRIPT="$HOME/md2html.py"
+
+if [[ ! -f "$PYTHON_SCRIPT" ]]; then
+    echo "Error: md2html.py not found at $PYTHON_SCRIPT" >&2
+    exit 1
+fi
+
+# Show usage if no arguments
+if [[ $# -eq 0 ]]; then
+    echo "Usage: $0 <input.md>"
+    echo "  Converts input.md to input.html in the same directory"
+    echo "  Uses UIUC theme, wiki-link resolution (from ~/wiki), and nav bar"
+    echo "  Output file will be named <input.html>"
+    exit 1
+fi
+
+INPUT_FILE="$1"
+
+# Check if input file exists
+if [[ ! -f "$INPUT_FILE" ]]; then
+    echo "Error: Input file '$INPUT_FILE' not found" >&2
+    exit 1
+fi
+
+# Derive output file: same directory, same basename, .html extension
+INPUT_BASE="$(basename "$INPUT_FILE" .md)"
+INPUT_DIR="$(dirname "$INPUT_FILE")"
+OUTPUT_FILE="$INPUT_DIR/$INPUT_BASE.html"
+
+# Run the conversion with UIUC theme options
+python3 "$PYTHON_SCRIPT" "$INPUT_FILE" -o "$OUTPUT_FILE" --standalone -s -d "$HOME/wiki" -n
+
+echo "Converted '$INPUT_FILE' to '$OUTPUT_FILE'"
