@@ -69,7 +69,7 @@ This is probably the command you'll use most often.
 If your file is in a different folder, just give the full path:
 
 ```bash
-python3 md2html.py /Users/su-jkhenry/Documents/project/notes.md -o /Users/su-jkhenry/Documents/project/notes.html --standalone
+python3 md2html.py ~/Documents/project/notes.md -o ~/Documents/project/notes.html --standalone
 ```
 
 ---
@@ -89,7 +89,7 @@ The script fixes this automatically. When you run it, it rewrites any link that 
 **The catch:** it needs to know where all your Markdown files live so it can find the right matches. You tell it with `--dir`:
 
 ```bash
-python3 md2html.py notes.md -o notes.html --standalone --dir /Users/su-jkhenry/Documents/project
+python3 md2html.py notes.md -o notes.html --standalone --dir ~/Documents/project
 ```
 
 The `--dir` path should be the folder that contains all your interlinked `.md` files. The script scans that folder and uses it to fix up the links.
@@ -103,8 +103,8 @@ If all your files are in the same folder you're already working in, you can leav
 The script converts one file at a time, so for a folder of ten files you'd run it ten times. A simple way to do all of them at once in Terminal:
 
 ```bash
-for f in /Users/su-jkhenry/Documents/project/*.md; do
-    python3 ~/md2html.py "$f" -o "${f%.md}.html" --standalone --dir /Users/su-jkhenry/Documents/project
+for f in ~/Documents/project/*.md; do
+    python3 ~/md2html.py "$f" -o "${f%.md}.html" --standalone --dir ~/Documents/project
 done
 ```
 

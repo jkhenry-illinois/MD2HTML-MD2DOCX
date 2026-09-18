@@ -54,3 +54,9 @@ with `--rebuild-ref`, or delete `~/.md2docx` to reset).
 
 See `~/TOOLS.md` for the fuller personal tool registry entry (status,
 known issues, ideas) covering this project.
+
+## License
+
+MIT. See [LICENSE](LICENSE). These are personal tools and are not affiliated
+with or endorsed by the University of Illinois. The "UIUC-themed" variants
+just borrow the campus colors.
